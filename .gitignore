@@ -1,0 +1,21 @@
+# secrets — never commit real keys
+api_keys.json
+creds.json
+.env
+*.local
+# runtime state (written to the target papers dir; ignored here as defense-in-depth
+# in case the tool is run against a directory inside this clone)
+pdf_metadata_status.json
+_llm_usage.json
+_proposals_verified.csv
+*.corrupt-*
+# PDF backups / atomic-write temp files
+*.pdf.bak
+*.pdf.tmp
+# python
+__pycache__/
+*.pyc
+.venv/
+venv/
+# os
+.DS_Store

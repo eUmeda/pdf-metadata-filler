@@ -1,0 +1,13 @@
+cff-version: 1.2.0
+message: "If you use this tool, a citation or link is appreciated (not required)."
+type: software
+title: "pdf-metadata-filler"
+version: "1.1.0"
+authors:
+  - family-names: Umeda
+    given-names: Eisaku
+    alias: eUmeda
+url: "https://github.com/eUmeda/pdf-metadata-filler"
+repository-code: "https://github.com/eUmeda/pdf-metadata-filler"
+license: MIT
+date-released: "2026-06-12"

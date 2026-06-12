@@ -1,0 +1,46 @@
+{
+  "_comment": [
+    "pdf-metadata-filler APIキー設定ファイル（雛形）",
+    "cp api_keys.example.json api_keys.json してリポジトリ直下（scripts/ の1つ上）に置く。",
+    "別の場所に置く場合は各スクリプトの --keys PATH で指定する。",
+    "解決順: --keys 指定 → リポジトリ直下の api_keys.json →（fill_pdf_metadata.py のみ）走査対象ディレクトリ。",
+    "実鍵は commit しないこと（api_keys.json は .gitignore 済み）。",
+    "使用するサービスのキーだけ記入すれば良い。空文字列のサービスはスキップされる。",
+    "LLM使用優先順位: groq → gemini → (LLMなし: ヒューリスティックOCRフォールバック)。",
+    "fuzzy_fill.py のみ LLM 必須（groq.api_key か gemini.api_key のどちらかが要る）。",
+    "メールが空・プレースホルダ（example.com / your-email 等）の場合、mailto は一切送信されない。",
+    "無料枠の数値は頻繁に変わる。必ず各プロバイダの現行ドキュメントで確認すること。"
+  ],
+
+  "openalex": {
+    "email": "",
+    "api_key": "",
+    "_comment_api_key": "2026-02-13 以降、OpenAlex は全 API リクエストで API キー必須（無料）。未設定だと警告のうえテスト枠で試行し、401/403/409 が返ったら OpenAlex ティアをスキップして CrossRef 以降で継続する。",
+    "_comment_email": "User-Agent mailto / CrossRef polite 用の連絡先メール（任意）。実在しうるアドレスのときだけ送信される。",
+    "_signup": "https://openalex.org/settings/api （無料キー）"
+  },
+
+  "cinii": {
+    "appid": "",
+    "_comment": "CiNii OpenSearch の必須パラメータ appid。NII 開発者登録（無料）で取得。未設定なら CiNii ティア（和文紀要）は警告のうえスキップされる。",
+    "_signup": "https://support.nii.ac.jp/ja/cinii/api/developer （NII 開発者登録）"
+  },
+
+  "gemini": {
+    "api_key": "",
+    "model": "gemini-2.5-flash",
+    "_comment": "Google Gemini API（requests による REST 直叩き。SDK 不使用）。既定モデル: gemini-2.5-flash。",
+    "_privacy": "無料枠では送信テキストが Google の製品・サービス改善（人手レビュー含む）に使われうる。未公開原稿・機密 PDF は有料枠か Groq を使うこと。",
+    "_signup": "https://aistudio.google.com/app/apikey",
+    "_free_tier": "変動するため現行の https://ai.google.dev/pricing で要確認"
+  },
+
+  "groq": {
+    "api_key": "",
+    "model": "llama-3.3-70b-versatile",
+    "_comment": "Groq API（REST 直叩き。SDK 不使用）。既定モデル: llama-3.3-70b-versatile。",
+    "_signup": "https://console.groq.com/keys",
+    "_free_tier": "変動するため現行の https://console.groq.com/docs/rate-limits で要確認",
+    "_models": "現行モデル一覧は https://console.groq.com/docs/models を参照（廃止モデルを指定すると 404 で当該プロバイダは無効化される）"
+  }
+}
